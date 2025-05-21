@@ -1,6 +1,4 @@
-
-
-const ProductCard = ({ id, price, image, title, description, category }) => {
+const ProductCard = ({ id, price, image, title, description, category, onAddToCart }) => {
   return (
     <div className='relative flex flex-col gap-4 px-3 pt-3 pb-5 border-2 border-slate-200 w-72 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 group overflow-hidden'>
       <div className='absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-10'>
@@ -20,8 +18,16 @@ const ProductCard = ({ id, price, image, title, description, category }) => {
         {title}
       </h2>
       <p className='text-gray-600 text-sm line-clamp-2 min-h-[2.5em]'>{description}</p>
+
+      {/* Add to Cart Button */}
+      <button
+        onClick={onAddToCart}
+        className='mt-auto bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors'
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
 
-export default ProductCard;
+export default ProductCard;
