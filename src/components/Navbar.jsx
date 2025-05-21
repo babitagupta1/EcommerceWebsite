@@ -1,35 +1,34 @@
 import { LOGO_URL } from "../utils/constants";
+import { Link } from "react-router";
 
 const Navbar = () => {
-    return (
-        <>
-        <header>
- 
-  <div className='flex items-center justify-between px-3 text-2xl'>
-    <div>
-      <img
-        src={LOGO_URL}
-        alt=''
-        className='w-20 h-20'
-      />
-    </div>
-    <ul className='flex justify-between list-none w-96 gap-10'>
-      <li>
-        <a className="py-2 px-10 border-2 rounded-lg hover:bg-blue-600" href=''>Home</a>
-      </li>
-      <li>
-        <a  className ="py-2 px-10  border-2 rounded-lg hover:bg-blue-600" href=''>About</a>
-      </li>
-      <li>
-        <a className="py-2 px-10  border-2 rounded-lg hover:bg-blue-600" href=''>Contact</a>
-      </li>
-    </ul>
-    <div>Cart</div>
-  </div>
-</header>
+  return (
+    <>
+        <div className='flex items-center justify-between px-3 text-2xl'>
+          <div>
+            <Link to='/'><img
+              src={LOGO_URL}
+              alt=''
+              className='w-20 h-20'
+            /></Link>
+          </div>
+          <ul className='flex justify-between list-none w-96 gap-10'>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/about'>About</Link>
+            </li>
+            <li>
+              <Link to='/contact'>Contact</Link>
+            </li>
+          </ul>
+          <div>Cart</div>
+        </div>
+   
 
-        </>
-    )
+    </>
+  )
 }
 
 export default Navbar;

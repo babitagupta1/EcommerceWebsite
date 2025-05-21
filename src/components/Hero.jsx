@@ -3,17 +3,13 @@ import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import ShimmerProductCard from "./ShimmerProductCard";
 
-
 const Hero = () => {
-
   let [topRatedProducts, setTopRatedProducts] = useState([]);
-  const [allProducts,setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("")
   const changeText = (event) => {
     setSearchText(event.target.value);
   };
-
-  
 
   const searchProducts = () => {
     const filteredProducts = allProducts.filter((product) =>
@@ -22,33 +18,38 @@ const Hero = () => {
     setTopRatedProducts(filteredProducts);
   };
 
- 
-
   const fetchproduct = async () => {
-  const result = await fetch("https://fakestoreapi.com/products");
-  const json = await result.json();
-  setTopRatedProducts(json);
-  setAllProducts(json);
-};
+    const result = await fetch("https://fakestoreapi.com/products");
+    const json = await result.json();
+    setTopRatedProducts(json);
+    setAllProducts(json);
+  };
 
-useEffect(() => {
-  fetchproduct();
-}, []);
+  useEffect(() => {
+    fetchproduct();
+  }, []);
 
   const topRatedProductsData = () => {
-    setTopRatedProducts(productData.filter((product) => product.rating.rate >= 4));
+    setTopRatedProducts(allProducts.filter((product) => product.rating.rate >= 4));
     console.log(topRatedProducts);
   };
 
- if(topRatedProducts.length === 0){
-    return (
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {Array.from({ length:14 }).map((_,index)=>(<ShimmerProductCard key={index}/>
-      ))}     
-      </div>
-        );
-    }
+    //clear function
+  const Clearproduct = () => {
+  setTopRatedProducts(allProducts);
+  setSearchText("");
+  console.log("Cleared filters and restored all products");
+};
 
+  if (topRatedProducts.length === 0) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {Array.from({ length: 14 }).map((_, index) => (<ShimmerProductCard key={index} />
+        ))}
+      </div>
+    );
+  }
+ 
   return (
     <>
 
@@ -61,7 +62,7 @@ useEffect(() => {
               placeholder='Search...'
               value={searchText}
               onChange={changeText}
-            />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+            />
             <button className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600
            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={searchProducts}>
               Search
@@ -69,9 +70,15 @@ useEffect(() => {
 
           </div>
           <button className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600
-         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={topRatedProductsData}>
+            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={topRatedProductsData}>
             Top Rated Products
           </button>
+
+          <button className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600
+            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={Clearproduct}>
+            Clear filter
+          </button>
+
         </div>
         <div className='flex flex-wrap justify-center gap-4 product-items'>
 

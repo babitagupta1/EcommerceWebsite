@@ -1,6 +1,6 @@
 
 
-const ProductCard = ({ price, image, title, description, category }) => {
+const ProductCard = ({ id, price, image, title, description, category }) => {
   return (
     <div className='relative flex flex-col gap-4 px-3 pt-3 pb-5 border-2 border-slate-200 w-72 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 group overflow-hidden'>
       <div className='absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-10'>
